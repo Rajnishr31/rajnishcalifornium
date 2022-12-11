@@ -8,10 +8,54 @@ const req = require('express/lib/request');
 const { route } = require('express/lib/application');
 
 
-router.get("/profile-details", function(req, res){
+//1
+const array = ["rang de basanti","the shining","lords of the rings","batman begins"]
+router.get("/movies", function(req, res){
     // Write the LOGIC here
-    res.send('dummy response')
+
+//console.log('Printing the request to find out wjere name is stored',req.params.arr)
+
+    res.send({movies:array})
 })
+
+//2 and 3
+
+router.get("/movies/:indexNumber", function(req, res){
+    let index = req.params.indexNumber
+    //let rs = array.map(x=>x).at(useMe)
+    //for(i = 0;i<array.length;i++){
+        //const arr = array[i]
+if(index<=array.length){
+    res.send(array?array[index]:"Try again,Use valid index")}
+})
+
+
+//4
+
+let pictures = [ {
+    id: 1,
+    name: "The Shining"
+   }, {
+    id: 2,
+    name: "Incendies"
+   }, {
+    id: 3,
+    name: "Rang de Basanti"
+   }, {
+    id: 4,
+    name: "Finding Nemo"
+   }]
+   router.get("/films", function(req, res){
+    res.send({films:pictures})
+})
+
+//5
+
+router.get("/films/:filmId", function(req, res){
+    let z = pictures.map(y=>y).find(y=>y.id==req.params.filmId)
+    res.send(z?z:"movies doesn't exist with this id,Try again")
+})
+
 
 router.get('/test-me', function (req, res) {
     console.log("email from introduction module", intro.myEmail)
