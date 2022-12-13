@@ -70,4 +70,63 @@ router.post("/test-post-4", function(req, res) {
     res.send(  { msg: arr , status: true }  )
 })
 
+//Q1...
+
+const playerCollection = [{
+    "name": "manish",
+    "dob": "1/1/1995",
+    "gender": "male",
+    "city": "jalandhar",
+    "sports": [
+    "swimming"
+    ]
+    },
+    {
+        "name": "Raj",
+        "dob": "5/1/1998",
+        "gender": "male",
+        "city": "Ranchi",
+        "sports": [
+        "cricket"
+        ]
+        },
+        {
+            "name": "Rohit",
+            "dob": "23/5/1992",
+            "gender": "male",
+            "city": "Mumbai",
+            "sports": [
+            "chess"
+            ]
+            },
+            {
+                "name": "manisha",
+                "dob": "31/3/2002",
+                "gender": "female",
+                "city": "lakhnow",
+                "sports": [
+                "football"
+                ]
+                }
+                
+             
+    ]
+
+    router.post("/test-post-5", function(req, res) {
+        
+        let xyz= req.body.name
+        
+        let player = playerCollection.find((x)=>x.name===xyz)
+        if(player){
+        res.send(  { msg: playerCollection , status: false }  )}
+        else{
+            playerCollection.push(req.body)
+            res.send(  { msg: playerCollection , status: true }  )}
+        }
+    )
+
+
+
+
+
 module.exports = router;
