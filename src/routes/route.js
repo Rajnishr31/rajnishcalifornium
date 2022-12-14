@@ -160,4 +160,49 @@ router.post( "/post-query-2", function (req, res){
 })
 
 
+
+
+//Q1.
+
+let person= [
+   {
+   name: "PK",
+   age: 10,
+   votingStatus: false
+},
+{
+   name: "SK",
+   age: 20,
+   votingStatus: false
+},
+{
+   name: "AA",
+   age: 70,
+   votingStatus: false
+},
+{
+   name: "SC",
+   age: 5,
+   votingStatus: false
+},
+{
+   name: "HO",
+   age: 40,
+   votingStatus: false
+}
+]
+ router.post( "/post-query-5", function (req, res){
+    let data1= req.query.input
+    const filteredPerson = person.filter(x=>{
+        if(x.age > data1){
+            x.votingStatus = true
+            return true
+        }
+    
+    })
+    res.send( {data: filteredPerson , status: true})
+})
+
+
+
 module.exports = router;
