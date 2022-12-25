@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const customerController=require('../controllers/customerController copy')
+const cardcontroller=require('../controllers/cardController')
+const middlewares=require('../middleware/middleware')
 
-const UserController= require("../controllers/userController")
-const productController= require("../controllers/productController")
-const orderController= require("../controllers/orderController")
+router.post("/createCustomer",customerController.createCustomer)
 
-const middleware = require ("../middlewares/middleware")
+router.get("/getCustomer",customerController.getCustomer)
 
+router.put("/updateCustomer",customerController.updateCustomer)
 
-
-router.post("/createUser", middleware.headerValidator, UserController.createUser )
-router.post("/createProduct", productController.createProduct  )
-router.post("/createOrder",middleware.headerValidator,middleware.userAndProductValidator,orderController.createOrder)
-router.get("/getOrderDetails",orderController.getOrderDetails)
+router.put("/deleteCustomer",customerController.deleteCustomer)
 
 
+router.post("/createCard",middlewares.mid1,middlewares.mid2,cardcontroller.createCard)
+router.post("/getCard",cardcontroller.getCard)
 
-module.exports = router;
